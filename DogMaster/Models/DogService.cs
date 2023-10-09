@@ -7,7 +7,7 @@ public class DogService
 
     public delegate void Service(double discount);
 
-    public void PerformService(Service service, double discount)
+    public void PerformService(Action<double> service, double discount)
     {
         service(discount);
     }

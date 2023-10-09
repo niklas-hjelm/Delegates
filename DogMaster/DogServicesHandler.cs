@@ -1,8 +1,37 @@
 ﻿using DogMaster.Models;
+using static DogMaster.Models.DogService;
 
 namespace DogMaster;
 public class DogServicesHandler
 {
+
+    public Dictionary<string, Action<double>> Services { get; set; }
+
+
+    public DogServicesHandler()
+    {
+        Services = new Dictionary<string, Action<double>>();
+        Services.Add("nailClipping", discount =>
+        {
+            Console.WriteLine($"Your dog got its nails clipped!");
+        });
+        Services.Add("trimming", discount =>
+        {
+            Console.WriteLine($"Your dog has got its fur trimmed!");
+        });
+        Services.Add("walk", discount =>
+        {
+            Console.WriteLine($"Your dog got a walk!");
+        });
+        Services.Add("bath", discount =>
+        {
+            Console.WriteLine($"Your dog got a bath!");
+        });
+        Services.Add("lunch", discount =>
+        {
+            Console.WriteLine($"Your dog ate its lunch!");
+        });
+    }
 
     public void ExecuteService(string selectedService, Dog dog)
     {
@@ -11,43 +40,9 @@ public class DogServicesHandler
 
         var discount = 0.75;
 
-        switch (selectedService)
+        if (Services.ContainsKey(selectedService))
         {
-            case "nailClipping":
-                service.Price = 200;
-                service.PerformService((discount) =>
-                {
-                    Console.WriteLine($"{dog.Name} has got its nails clipped! Final price: {service.Price * discount}");
-                }, discount);
-                break;
-            case "trimming":
-                service.Price = 400;
-                service.PerformService((discount) =>
-                {
-                    Console.WriteLine($"{dog.Name} has got its fur trimmed! Final price: {service.Price * discount}");
-                }, discount);
-                break;
-            case "walk":
-                service.Price = 200;
-                service.PerformService((discount) =>
-                {
-                    Console.WriteLine($"{dog.Name} has been on a walk! Final price: {service.Price * discount}");
-                }, discount);
-                break;
-            case "bath":
-                service.Price = 300;
-                service.PerformService((discount) =>
-                {
-                    Console.WriteLine($"{dog.Name} smells like roses! Final price: {service.Price * discount}");
-                }, discount);
-                break;
-            case "lunch":
-                service.Price = 30;
-                service.PerformService((discount) =>
-                {
-                    Console.WriteLine($"{dog.Name} ate all of the grub! Final price: {service.Price * discount}");
-                }, discount);
-                break;
+            Services[selectedService](discount);
         }
     }
 }
