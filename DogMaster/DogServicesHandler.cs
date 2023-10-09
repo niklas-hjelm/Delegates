@@ -15,7 +15,7 @@ public class DogServicesHandler
         {
             case "nailClipping":
                 service.Price = 200;
-                service.PerformService((discount) => 
+                service.PerformService((discount) =>
                 {
                     Console.WriteLine($"{dog.Name} has got its nails clipped! Final price: {service.Price * discount}");
                 }, discount);
