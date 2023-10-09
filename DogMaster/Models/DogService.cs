@@ -5,10 +5,10 @@ public class DogService
 
     public double Price { get; set; }
 
-    public delegate void Service();
+    public delegate void Service(double discount);
 
-    public void PerformService(Service service)
+    public void PerformService(Service service, double discount)
     {
-        service();
+        service(discount);
     }
 }

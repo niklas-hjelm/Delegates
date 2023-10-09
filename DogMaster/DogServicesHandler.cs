@@ -9,31 +9,44 @@ public class DogServicesHandler
         var service = new DogService();
         service.Dog = dog;
 
+        var discount = 0.75;
+
         switch (selectedService)
         {
             case "nailClipping":
-                service.PerformService(() => 
+                service.Price = 200;
+                service.PerformService((discount) => 
                 {
-                    Console.WriteLine($"{dog.Name} has got its nails clipped!");
-                });
+                    Console.WriteLine($"{dog.Name} has got its nails clipped! Final price: {service.Price * discount}");
+                }, discount);
                 break;
             case "trimming":
-                service.PerformService(() =>
+                service.Price = 400;
+                service.PerformService((discount) =>
                 {
-                    Console.WriteLine($"{dog.Name} has got its fur trimmed!");
-                });
+                    Console.WriteLine($"{dog.Name} has got its fur trimmed! Final price: {service.Price * discount}");
+                }, discount);
                 break;
             case "walk":
-                service.PerformService(() =>
+                service.Price = 200;
+                service.PerformService((discount) =>
                 {
-                    Console.WriteLine($"{dog.Name} has been on a walk!");
-                });
+                    Console.WriteLine($"{dog.Name} has been on a walk! Final price: {service.Price * discount}");
+                }, discount);
                 break;
             case "bath":
-                service.PerformService(() =>
+                service.Price = 300;
+                service.PerformService((discount) =>
                 {
-                    Console.WriteLine($"{dog.Name} smells like roses!");
-                });
+                    Console.WriteLine($"{dog.Name} smells like roses! Final price: {service.Price * discount}");
+                }, discount);
+                break;
+            case "lunch":
+                service.Price = 30;
+                service.PerformService((discount) =>
+                {
+                    Console.WriteLine($"{dog.Name} ate all of the grub! Final price: {service.Price * discount}");
+                }, discount);
                 break;
         }
     }
