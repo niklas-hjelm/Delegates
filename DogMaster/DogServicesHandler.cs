@@ -4,9 +4,7 @@ using static DogMaster.Models.DogService;
 namespace DogMaster;
 public class DogServicesHandler
 {
-
     public Dictionary<string, Action<double>> Services { get; set; }
-
 
     public DogServicesHandler()
     {
